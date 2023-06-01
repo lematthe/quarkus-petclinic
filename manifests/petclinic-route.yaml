@@ -1,0 +1,21 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: quarkus-petclinic-git
+    app.kubernetes.io/component: quarkus-petclinic-git
+    app.kubernetes.io/instance: quarkus-petclinic-git
+    app.kubernetes.io/name: quarkus-petclinic-git
+    app.kubernetes.io/part-of: quarkus-petclinic-git-app
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-17-ubi8
+  name: quarkus-petclinic-git
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: quarkus-petclinic
+    weight: null
+status: {}
