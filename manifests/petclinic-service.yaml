@@ -20,6 +20,6 @@
       protocol: TCP
       targetPort: 8443
     selector:
-      deployment: quarkus-petclinic
+      app: quarkus-petclinic
   status:
     loadBalancer: {}
