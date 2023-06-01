@@ -18,7 +18,7 @@
           app: quarkus-petclinic
       spec:
         containers:
-        - image: image-registry.openshift-image-registry.svc:5000/test/quarkus-petclinic-git:latest
+        - image: image-registry.openshift-image-registry.svc:5000/quarkus-petclinic-git:latest
           name: quarkus-petclinic
           ports:
           - containerPort: 8080
