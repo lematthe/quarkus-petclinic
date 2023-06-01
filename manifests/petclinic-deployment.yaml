@@ -1,10 +1,7 @@
-- apiVersion: apps/v1
+---
+  apiVersion: apps/v1
   kind: Deployment
   metadata:
-    annotations:
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"quarkus-petclinic:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"quarkus-petclinic\")].image"}]'
-      openshift.io/generated-by: OpenShiftNewApp
-    creationTimestamp: null
     labels:
       app: quarkus-petclinic
       app.kubernetes.io/component: quarkus-petclinic
@@ -14,23 +11,25 @@
     replicas: 1
     selector:
       matchLabels:
-        deployment: quarkus-petclinic
-    strategy: {}
+        app: quarkus-petclinic
     template:
       metadata:
-        annotations:
-          openshift.io/generated-by: OpenShiftNewApp
-        creationTimestamp: null
         labels:
-          deployment: quarkus-petclinic
+          app: quarkus-petclinic
       spec:
         containers:
-        - image: ' '
+        - image: image-registry.openshift-image-registry.svc:5000/test/quarkus-petclinic-git:latest
           name: quarkus-petclinic
           ports:
           - containerPort: 8080
             protocol: TCP
           - containerPort: 8443
             protocol: TCP
-          resources: {}
-  status: {}
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
